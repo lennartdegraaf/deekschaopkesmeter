@@ -118,16 +118,24 @@ const SheepCrowdfunding = () => {
       <img 
         src={`/images/sheep${imageNumber}.png`}
         alt={`Schaap ${imageNumber}`}
-        className="drop-shadow-lg object-contain"
-        style={{ width: '80px', height: '80px' }}
+        className="drop-shadow-lg object-contain w-10 h-10 sm:w-14 sm:h-14 md:w-20 md:h-20"
       />
     </div>
   );
   
   return (
-    <div className="max-w-4xl mx-auto p-8 rounded-lg shadow-lg relative" style={{ backgroundColor: '#94c13d' }}>
-      {/* Logo rechtsboven */}
-      <div className="absolute top-4 right-4 w-48 h-24">
+    <div className="max-w-4xl mx-auto p-4 sm:p-6 md:p-8 rounded-lg shadow-lg relative" style={{ backgroundColor: '#94c13d' }}>
+      {/* Logo mobiel - bovenaan gecentreerd, alleen zichtbaar op kleine schermen */}
+      <div className="block md:hidden w-32 h-16 mx-auto mb-4">
+        <img 
+          src="/images/logo-GoBK.svg" 
+          alt="GoBK Logo" 
+          className="w-full h-full object-contain"
+        />
+      </div>
+      
+      {/* Logo desktop - rechtsboven, alleen zichtbaar op grotere schermen */}
+      <div className="hidden md:block absolute top-4 right-4 w-48 h-24">
         <img 
           src="/images/logo-GoBK.svg" 
           alt="GoBK Logo" 
@@ -136,25 +144,25 @@ const SheepCrowdfunding = () => {
       </div>
       
       {/* Header */}
-      <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold mb-2" style={{ color: '#1d284a' }}>
+      <div className="text-center mb-4 sm:mb-6 md:mb-8 md:pr-52 lg:pr-0">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2" style={{ color: '#1d284a' }}>
           Crowdfunding Dèèkschaopkes
         </h2>
       </div>
       
       {/* Bedrag weergave */}
-      <div className="text-center mb-6">
-        <div className="text-5xl font-bold mb-2" style={{ color: '#1d284a' }}>
+      <div className="text-center mb-4 sm:mb-6">
+        <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2" style={{ color: '#1d284a' }}>
           €{Math.round(displayEuros).toLocaleString('nl-NL')}
         </div>
-        <div className="text-xl" style={{ color: '#1d284a' }}>
+        <div className="text-base sm:text-lg md:text-xl" style={{ color: '#1d284a' }}>
           van €{goalEuros.toLocaleString('nl-NL')}
         </div>
       </div>
       
       {/* Schaapjes display boven de meter */}
       <div className="relative mb-2">
-        <div className="relative items-end" style={{ height: '100px' }}>
+        <div className="relative items-end h-12 sm:h-16 md:h-24">
           {[...Array(totalSheep)].map((_, index) => {
             // Positioneer elk schaapje bij 10%, 30%, 50%, 70%, 90%
             const position = 10 + (index * 20);
@@ -179,8 +187,8 @@ const SheepCrowdfunding = () => {
       </div>
       
       {/* Voortgangsbalk */}
-      <div className="mb-8">
-        <div className="relative h-12 rounded-full overflow-hidden shadow-inner" style={{ backgroundColor: '#ffffff' }}>
+      <div className="mb-6 sm:mb-8">
+        <div className="relative h-10 sm:h-12 rounded-full overflow-hidden shadow-inner" style={{ backgroundColor: '#ffffff' }}>
           {/* Vullende balk */}
           <div 
             className="absolute h-full rounded-full"
@@ -195,7 +203,7 @@ const SheepCrowdfunding = () => {
           
           {/* Percentage tekst */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-lg font-bold drop-shadow-sm" style={{ color: '#1d284a' }}>
+            <span className="text-base sm:text-lg font-bold drop-shadow-sm" style={{ color: '#1d284a' }}>
               {Math.round(percentage)}%
             </span>
           </div>
@@ -203,10 +211,10 @@ const SheepCrowdfunding = () => {
       </div>
       
       {/* Ververs knop */}
-      <div className="mt-8 flex justify-center">
+      <div className="mt-6 sm:mt-8 flex justify-center">
         <button 
           onClick={fetchAmount}
-          className="px-6 py-3 rounded-lg transition-colors font-semibold"
+          className="px-4 py-2 sm:px-6 sm:py-3 rounded-lg transition-colors font-semibold text-sm sm:text-base"
           style={{ 
             backgroundColor: '#f8b133',
             color: '#1d284a'
